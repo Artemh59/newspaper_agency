@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from newspaper.models import Newspaper
+
+
+class Index(generic.ListView):
+    model = Newspaper
+    template_name = "newspaper/index.html"
