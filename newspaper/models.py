@@ -31,3 +31,6 @@ class Newspaper(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="redactors"
     )
+
+    def __str__(self):
+        return f"{self.topic}"
