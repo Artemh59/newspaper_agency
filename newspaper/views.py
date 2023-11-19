@@ -1,11 +1,17 @@
 from django.views import generic
 
-from newspaper.models import Newspaper
+from newspaper.models import Newspaper, Topic, Redactor
 
 
-class Index(generic.ListView):
-    model = Newspaper
+class Index(generic.TemplateView):
     template_name = "newspaper/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["topics"] = Topic.objects.count()
+        context["news"] = Newspaper.objects.count()
+        context["redactors"] = Redactor.objects.count()
+        return context
 
 
 class About(generic.ListView):
