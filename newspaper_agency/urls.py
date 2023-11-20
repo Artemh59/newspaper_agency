@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from newspaper.views import Index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Index.as_view(), name='index'),
-    path('newspaper/', include('newspaper.urls'),),
+    path('newspaper/', include('newspaper.urls', namespace="newspaper")),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
