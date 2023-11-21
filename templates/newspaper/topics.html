@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-8">
+    <h2 class="mb-4">Topics</h2>
+    <div class="row">
+        {% for topic in topic_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                  <a href="{% url 'newspaper:topic-detail' pk=topic.id %}">
+                    <h5 class="card-title text-center">{{ topic.name }}</h5>
+                  </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

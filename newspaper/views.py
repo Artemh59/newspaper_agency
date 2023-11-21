@@ -20,3 +20,13 @@ class Index(generic.TemplateView):
 class About(generic.ListView):
     model = Newspaper
     template_name = "newspaper/about_us.html"
+
+
+class TopicViews(generic.ListView):
+    model = Topic
+    template_name = "newspaper/topics.html"
+
+
+class TopicDetailViews(generic.DetailView):
+    model = Topic
+    template_name = "newspaper/topic_detail.html"
