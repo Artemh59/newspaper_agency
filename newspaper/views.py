@@ -24,6 +24,6 @@ class TopicViews(generic.ListView):
     template_name = "newspaper/topics.html"
 
 
-class NewspaperDetailViews(generic.DetailView):
+class TopicDetailViews(generic.DetailView):
     model = Topic
     template_name = "newspaper/topic_detail.html"
