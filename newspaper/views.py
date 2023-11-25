@@ -14,16 +14,14 @@ class Index(generic.TemplateView):
         return context
 
 
-class About(generic.ListView):
+class AboutUsView(generic.ListView):
     model = Newspaper
     template_name = "newspaper/about_us.html"
 
 
 class TopicViews(generic.ListView):
     model = Topic
-    template_name = "newspaper/topics.html"
 
 
 class TopicDetailViews(generic.DetailView):
     model = Topic
-    template_name = "newspaper/topic_detail.html"

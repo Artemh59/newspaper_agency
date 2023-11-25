@@ -27,9 +27,9 @@ class Newspaper(models.Model):
         on_delete=models.CASCADE,
         related_name="newspapers"
     )
-    redactors = models.ManyToManyField(
+    redactor = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="redactors"
+        related_name="redactor"
     )
 
     def __str__(self):
