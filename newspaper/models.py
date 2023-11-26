@@ -19,7 +19,7 @@ class Redactor(AbstractUser):
 
 
 class Newspaper(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=255)
     content = models.TextField()
     published_date = models.DateField(auto_now=True)
     topic = models.ForeignKey(

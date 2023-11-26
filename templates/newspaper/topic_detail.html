@@ -2,19 +2,28 @@
 
 {% block content %}
   <div class="container mt-7">
-    <div class="row">
-    {% for new in topic.newspapers.all %}
-      <div class="col-md-6">
-        <div class="card">
-          <img src="/static/assets/img/breaking-news-tv-screensaver-urgent-announcement_8071-2144.jpg" class="card-img-top" alt="news">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ new.title }}</h5>
-            <p class="card-text mt-4">{{ new.content }}</p>
-            <a href="#" class="btn btn-primary" onclick="return false;">More</a>
+    {% if topic.newspapers.all.count > 0 %}
+      <div class="row">
+      {% for new in topic.newspapers.all %}
+        <div class="col-md-6">
+          <div class="card">
+            <img src="/static/assets/img/breaking-news-tv-screensaver-urgent-announcement_8071-2144.jpg" class="card-img-top" alt="news">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ new.title }}</h5>
+              <p class="card-text mt-4">{{ new.content }}</p>
+              <a href="{% url 'newspaper:new-update' pk=new.id %}" class="btn btn-primary">Update</a>
+              <a href="{% url 'newspaper:new-delete' pk=new.id %}" class="btn btn-danger">Delete</a>
+            </div>
           </div>
         </div>
+      {% endfor %}
       </div>
-    {% endfor %}
-    </div>
+    {% else %}
+      <h2 class="mt-8 text-center">No one news here</h2>
+    {% endif %}
+    <h3 class="mt-7 text-center">
+      DELETE TOPIC
+      <a href="{% url 'newspaper:topic-delete' pk=topic.id %}" class="btn btn-danger">Delete</a>
+    </h3>
   </div>
 {% endblock %}

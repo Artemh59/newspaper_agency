@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from newspaper.forms import NewForm
 from newspaper.models import Newspaper, Topic, Redactor
 
 
@@ -33,3 +34,25 @@ class TopicCreateViews(LoginRequiredMixin, generic.CreateView):
 
 class TopicDetailViews(generic.DetailView):
     model = Topic
+
+
+class TopicDeleteViews(LoginRequiredMixin, generic.DeleteView):
+    model = Topic
+    success_url = reverse_lazy("newspaper:topic")
+
+
+class NewCreateViews(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    form_class = NewForm
+    success_url = reverse_lazy("newspaper:topic")
+
+
+class NewUpdateViews(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    form_class = NewForm
+    success_url = reverse_lazy("newspaper:topic")
+
+
+class NewDeleteViews(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:topic")
