@@ -1,9 +1,12 @@
+from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView
 
 from newspaper.forms import NewForm
 from newspaper.models import Newspaper, Topic, Redactor
+from newspaper.forms import SignUpForm
 
 
 class Index(generic.TemplateView):
@@ -15,6 +18,17 @@ class Index(generic.TemplateView):
         context["news"] = Newspaper.objects.count()
         context["redactors"] = Redactor.objects.count()
         return context
+
+
+class SignUpView(CreateView):
+    template_name = 'registration/signup.html'
+    form_class = SignUpForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        return response
 
 
 class AboutUsView(generic.ListView):
